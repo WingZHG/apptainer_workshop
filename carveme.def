@@ -1,0 +1,17 @@
+Bootstrap: docker
+
+From: continuumio/miniconda3
+
+
+%post
+	conda config --add channels defaults
+	conda config --add channels bioconda
+	conda config --add channels conda-forge
+
+	conda update conda
+	pip install carveme
+	conda install -c bioconda diamond
+	conda install -c conda-forge pyscipopt
+
+%runscript
+    exec "$@"
