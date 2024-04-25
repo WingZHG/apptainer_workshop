@@ -1,0 +1,24 @@
+Bootstrap: docker
+
+From: continuumio/miniconda3
+
+%files
+    liftoff.yml
+
+%environment
+
+%post
+	apt-get update
+	apt-get install -y libatlas-base-dev
+apt-get install -y libatlas3-base
+    conda update conda
+    ENV_NAME=$(head -1 liftoff.yml | cut -d' ' -f2)
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> $APPTAINER_ENVIRONMENT
+    echo "conda activate $ENV_NAME" >> $APPTAINER_ENVIRONMENT
+
+    . /opt/conda/etc/profile.d/conda.sh
+    conda env create -f liftoff.yml -p /opt/conda/envs/$ENV_NAME
+    conda clean --all
+    conda activate $ENV_NAME
+%runscript
+    exec "$@"

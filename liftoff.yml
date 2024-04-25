@@ -1,0 +1,10 @@
+name: liftoff
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - liftofftools
+  - numpy
+  - pip
+prefix: /home/user/miniconda3/envs/liftoff

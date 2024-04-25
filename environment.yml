@@ -1,0 +1,12 @@
+name: GADMA
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - gadma
+  - python=3.7
+  - pip
+  - nlopt
+  - moments
+prefix: /home/user/miniconda3/envs/GADMA
